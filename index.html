@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Felices 6 Meses, Shadia 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --primary: #bb2e74;
+    --light: #fce9f3;
+    --bg: #fff8fb;
+    --text: #3a1a3a;
+    --accent: #a32566;
+    --shadow: rgba(187, 46, 116, 0.2);
+    --frame-bg: #fff0f6;
+    --frame-border: #d98bb3;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    background: linear-gradient(to bottom, var(--light), white);
+    padding: 60px 20px 40px;
+    text-align: center;
+  }
+
+  header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.8rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+    letter-spacing: 1.3px;
+    animation: fadeInDown 1.2s ease-out;
+  }
+
+  header p {
+    font-size: 1.25rem;
+    color: #7a4d7a;
+    font-weight: 600;
+  }
+
+  .audio-box {
+    background-color: var(--accent);
+    padding: 24px 30px;
+    border-radius: 20px;
+    max-width: 450px;
+    margin: 30px auto 50px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 6px 18px var(--shadow);
+  }
+
+  #playButton {
+    padding: 14px 32px;
+    background-color: white;
+    color: var(--accent);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+
+  #playButton:hover {
+    background-color: #f2f2f2;
+  }
+
+  #status {
+    font-size: 1rem;
+    margin-left: 15px;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+
+  /* --- Carrusel --- */
+  .carousel-container {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto 70px;
+  }
+
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 28px;
+    padding: 0 60px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-item {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+    width: 340px;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px var(--shadow);
+    background-color: white;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel-item:hover,
+  .carousel-item:focus {
+    transform: scale(1.06);
+    box-shadow: 0 18px 45px rgba(187, 46, 116, 0.35);
+    z-index: 11;
+    outline: none;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    user-select: none;
+    pointer-events: none;
+    display: block;
+    max-height: 440px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Botones */
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary);
+    border: none;
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.7rem;
+    box-shadow: 0 5px 18px var(--shadow);
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    z-index: 22;
+  }
+
+  .carousel-button:hover {
+    background-color: #d9286a;
+  }
+
+  .carousel-button:disabled {
+    background-color: #d3a4bf;
+    cursor: default;
+  }
+
+  .carousel-button.prev {
+    left: 10px;
+  }
+
+  .carousel-button.next {
+    right: 10px;
+  }
+
+  /* Texto con marcos (secciones) */
+  .section-frame {
+    background-color: var(--frame-bg);
+    border: 2px solid var(--frame-border);
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 14px 35px rgba(187, 46, 116, 0.15);
+  }
+
+  .section-frame h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .section-frame p {
+    font-size: 1.22rem;
+    color: #5a305a;
+    line-height: 1.75;
+    white-space: pre-line;
+  }
+
+  /* Botón final */
+  .cta-button {
+    display: block;
+    margin: 45px auto 60px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 18px 48px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    box-shadow: 0 8px 26px rgba(187, 46, 116, 0.35);
+    transition: background 0.3s ease;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .cta-button:hover {
+    background: #d9286a;
+  }
+
+  /* Animaciones */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .carousel-item {
+      width: 280px;
+      max-height: 400px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .carousel-item {
+      width: 220px;
+      max-height: 320px;
+    }
+
+    .carousel-button {
+      width: 38px;
+      height: 38px;
+      font-size: 1.25rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+    }
+
+    .section-frame h2 {
+      font-size: 2.2rem;
+    }
+
+    .section-frame p {
+      font-size: 1rem;
+    }
+
+    .cta-button {
+      max-width: 100%;
+      padding: 16px 28px;
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Felices 6 Meses, Shadia 💖</h1>
+    <p>Una historia que apenas comienza...</p>
+  </header>
+
+  <div class="audio-box" aria-label="Reproductor de audio de Amor de Alta Elegancia">
+    <audio id="audioElement" preload="auto" src="audio/Amor - Alta Elegancia.mp3"></audio>
+    <button id="playButton" aria-pressed="false" aria-label="Reproducir o pausar la canción">▶️ Reproducir</button>
+    <span id="status" aria-live="polite" role="status"></span>
+  </div>
+
+  <!-- Carrusel -->
+  <div class="carousel-container" aria-label="Galería de recuerdos">
+    <button class="carousel-button prev" aria-label="Anterior imagen" id="prevBtn">&#8592;</button>
+    <div class="carousel" id="carousel" tabindex="0">
+      <div class="carousel-item" tabindex="0">
+        <img src="images/1.jpg" alt="Recuerdo especial 1" />
+      </div>
+      <div class="carousel-item" tabindex="0">
+        <img src="images/2.jpg" alt="Recuerdo especial 2" />
+      </div>
+      <div class="carousel-item" tabindex="0">
+        <img src="images/3.jpg" alt="Recuerdo especial 3" />
+      </div>
+      <div class="carousel-item" tabindex="0">
+        <img src="images/4.jpg" alt="Recuerdo especial 4" />
+      </div>
+      <div class="carousel-item" tabindex="0">
+        <img src="images/5.png" alt="Recuerdo especial 5" />
+      </div>
+      <div class="carousel-item" tabindex="0">
+        <img src="images/6.png" alt="Recuerdo especial 6" />
+      </div>
+    </div>
+    <button class="carousel-button next" aria-label="Siguiente imagen" id="nextBtn">&#8594;</button>
+  </div>
+
+  <!-- Secciones con textos y marcos -->
+  <section class="section-frame" aria-label="Mensaje: Camaróncita">
+    <h2>Camaróncita</h2>
+    <p>
+Camaróncita, contigo todos los días son felices. Desde que eres mi novia, no dejo de pensar y digo WOW ¿cómo es posible que esta chica tan hermosa con ojos preciosos pueda ser mi enamorada? No tenemos muchas fotos juntos, pero me encantaría que tuviéramos más. Quiero que formemos grandes recuerdos, para que cuando seamos mayores podamos contarles a nuestros hijos que amar es quedarse, incluso en los momentos difíciles, a pesar de los problemas y discusiones. Porque tú y yo siempre buscamos la manera de arreglar las cosas, y eso me hace sentir bien. Me gusta que ambos pongamos de nuestra parte, que luchemos juntos por esta relación. Sé que lograremos muchas cosas, mi niña, y lo haremos juntos tomados de la mano mi niña.
+    </p>
+  </section>
+
+  <section class="section-frame" aria-label="Mensaje: Tus ojos">
+    <h2>Tus ojos</h2>
+    <p>
+Tus ojos cuando veo tus ojos me vuelvo un loco que no puedo dejar de mirarlos te lo juro lo más atractivo de tu cara mi niña son tus ojos y tu nariz preciosa. Si te soy sincero al ver tus ojos me quedo pensando que chica tan hermosa tengo, tiene unos bellos ojos. Mirar tus ojos es como mirar el mismo universo, en ellos puedo ver las estrellas. La estrella más grande eres tú mi niña, me traes loco sinceramente, me haces el chico más feliz del universo con tal de ver tus ojos mi princesa hermosa. Te amo muchote.
+    </p>
+  </section>
+
+  <section class="section-frame" aria-label="Mensaje: Gracias">
+    <h2>Gracias</h2>
+    <p>
+Simplemente gracias amor de mi vida, gracias por tanto y perdón por tan poco, gracias por llegar a mi vida y darle sentido a mis días, gracias por mirarme con esos ojos tan bellos, gracias por ser tú, gracias por quererme bonito, gracias por ser sincera, gracias por querer mejorar, gracias por querer que lo nuestro funcione. Créeme que funcionará camaroncita, pondré todo de mí, quiero ser feliz, pero feliz a tu lado Shadia. Solo quiero ser feliz contigo y hacer lo que hacemos, hacerlo siempre juntos porque te amo muchote camaroncite, te amo y gracias por todo mi amor, gracias por estos 6 meses, estos 175 días Shadia, te amo.
+    </p>
+  </section>
+
+  <button class="cta-button" onclick="alert('¡Te amo, Shadia! 💖')">Te Amo 💖</button>
+
+<script>
+  const carousel = document.getElementById('carousel');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // Scroll amount equals to one card + gap (340 + 28)
+  const scrollAmount = 368;
+
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  // Audio controls
+  const audio = document.getElementById('audioElement');
+  const playBtn = document.getElementById('playButton');
+  const status = document.getElementById('status');
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playBtn.textContent = '⏸️ Pausar';
+      playBtn.setAttribute('aria-pressed', 'true');
+      status.textContent = 'Reproduciendo...';
+    } else {
+      audio.pause();
+      playBtn.textContent = '▶️ Reproducir';
+      playBtn.setAttribute('aria-pressed', 'false');
+      status.textContent = 'Pausado';
+    }
+  });
+
+  // Actualizar botones deshabilitados
+  function updateButtons() {
+    prevBtn.disabled = carousel.scrollLeft <= 0;
+    nextBtn.disabled = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1;
+  }
+
+  carousel.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+
+  updateButtons();
+</script>
+
+</body>
+</html>
+<script src="script.js"></script>
